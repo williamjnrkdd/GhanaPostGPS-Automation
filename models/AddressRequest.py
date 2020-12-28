@@ -16,6 +16,7 @@ class AddressRequest:
     asaaseUserID = "VGhpcyBJcyBUaGUgQW5kcm9pZCBVc2Vy"
 
     def __init__(self):
+        print("Initializing...")
         global aesEncryption 
         aesEncryption = AESEncryption()
         payload = "Web||"+str(self.DEVICE_ID)+"||"+str(aesEncryption.key)
@@ -27,6 +28,7 @@ class AddressRequest:
         global dataUrl
         dataUrl = decrypted_response.split("||")[1]
         #print("data url before ", dataUrl)
+        print("Done.")
 
         
         
@@ -38,7 +40,7 @@ class AddressRequest:
 
     def decrypt(self,data):
         aesDecryptedData  = aesEncryption.decrypt(data.text)
-        print("\nAES decrypted data\n",aesDecryptedData)
+        #print("\nAES decrypted data\n",aesDecryptedData)
         return aesDecryptedData
 
     def post(self,lng, lat):
