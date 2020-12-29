@@ -7,8 +7,8 @@ class GhanaPostGPS:
         global AddressRequest
         addressRequest = AddressRequest()
 
-    def getAddress(self,lng,lat):
-        print("Getting GhanaPostGPS Address of lng: ",lng," lat: ",lat)
+    def getAddress(self, lng,lat):
+        print("Getting GhanaPostGPS Address of lng: ",lng,"lat: ",lat)
         address = AddressRequest.post(AddressRequest, lng, lat)
         address = address[:2] + "-" + address[2:5] + "-" + address[5:]
         print("GhanaPostGPS Address: ", address)

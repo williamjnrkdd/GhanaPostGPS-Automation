@@ -41,11 +41,11 @@ class Excel:
     #     self.insertAddresses()
 
     def loopCoordinates(self):
-        self.coordType = int(input("Select the unit of the coordinates:\n 1: Decimal Degrees\n 2: Metre Grid\n ") or 2)
+        #self.coordType = int(input("Select the unit of the coordinates:\n 1: Decimal Degrees\n 2: Metre Grid\n ") or 2)
         self.addressList = []
-        if len(self.excel['X_Coord']) == len(self.excel['Y_Coord']):
-            for i in range(len(self.excel['X_Coord'])):
-                loc = [self.excel['Y_Coord'][i], self.excel['X_Coord'][i]]
+        if len(self.excel['CENTROID_X']) == len(self.excel['CENTROID_Y']):
+            for i in range(len(self.excel['CENTROID_X'])):
+                loc = [self.excel['CENTROID_X'][i], self.excel['CENTROID_Y'][i]]
                 # if self.coordType == 2:
                 #     # l = grid2latlong('TG ' + str(loc[1]) + " " + str(loc[0]))
                 #     loc = [l.longitude, l.latitude]
@@ -63,7 +63,7 @@ class Excel:
         if 'GPS Address' not in self.excel.columns:
             print("Column does not exist. Creating column and inserting data...")
             # self.excel.insert(self.excel.columns.get_loc("Coordinates") + 1, "GPS Address", self.addressList)
-            self.excel.insert(self.excel.columns.get_loc("Y_Coord") + 1, "GPS Address", self.addressList)
+            self.excel.insert(self.excel.columns.get_loc("CENTROID_Y") + 1, "GPS Address", self.addressList)
         else:
             print("Column exists. Inserting data...")
             self.excel["GPS Address"] = self.addressList

@@ -40,10 +40,10 @@ class AddressRequest:
 
     def decrypt(self,data):
         aesDecryptedData  = aesEncryption.decrypt(data.text)
-        #print("\nAES decrypted data\n",aesDecryptedData)
+        print("\nAES decrypted data\n",aesDecryptedData)
         return aesDecryptedData
 
-    def post(self,lng, lat):
+    def post(self, lng,lat):
         location = {}
         location["Action"] = "GetGPSName"
         location["Lati"] = lat
@@ -53,4 +53,11 @@ class AddressRequest:
         #print("data url after ", response.url)
         decrypted_response = self.decrypt(self,response)
         decrypted_response = json.loads(re.sub(r'[\x00-\x08\x0b\x0c\x0e-\x1f\x7f-\xff]', '', decrypted_response))
-        return decrypted_response["Table"][0]["GPSName"]
+        try:
+            return decrypted_response["Table"][0]["GPSName"]
+        except KeyError:
+            print("No address found. Check Coordinates.")
+            return "#ERROR: No address found"
+        except Exception as e:
+            print("An error occured: ",e)
+            return "#ERROR"
