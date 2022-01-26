@@ -1,1 +1,0 @@
-# GhanaPostGPS-Automation
